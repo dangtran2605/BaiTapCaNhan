@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách phòng ban</title>
+    <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Phòng ban</th>
+            <th>                       </th>
+        </tr>
+        <tr th:each="room : ${room}">
+            <td th:text="${room.roomID}"></td>
+            <td th:text="${room.roomName}"></td>
+            <td>
+                <a th:href="@{/room/edit/{roomID}(roomID=${room.roomID})}">Edit</a>
+                <form th:action="@{/room/delete/{roomID}(roomID=${room.roomID})}" method="post" onsubmit="return confirm">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>

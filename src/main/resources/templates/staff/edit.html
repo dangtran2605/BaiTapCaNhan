@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="layout :: link-css"></th:block>
+    <title>Chỉnh sửa thông tin nhân viên</title>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1>Chỉnh sửa nhân viên</h1>
+    <form th:action="@{/staff/edit}" th:object="${staff}" method="post">
+        <div class="col-6 mb-3">
+            <label class="form-label" for="id">Mã nhân viên</label>
+            <input class="form-control" type="text" th:field="*{staffID}" id="id">
+            <span class="text-danger" th:if="${#fields.hasErrors('staffID')}" th:errors ="*{staffID}"></span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="name">Tên nhân viên:</label>
+            <input class="form-control" type="text" th:field="*{staffName}" id="name">
+            <span class="text-danger" th:if="${#fields.hasErrors('staffName')}" th:errors ="*{staffName}"></span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="author">Nơi sinh:</label>
+            <input class="form-control" type="text" th:field="*{birthPlace}" id="author">
+            <span class="text-danger" th:if="${#fields.hasErrors('birthPlace')}" th:errors ="*{birthPlace}"></span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="sex">Phái (Nam/Nữ):</label>
+            <input class="form-control" type="text" th:field="*{sex}" id="sex">
+            <span class="text-danger" th:if="${#fields.hasErrors('sex')}" th:errors ="*{sex}"></span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="sala">Lương:</label>
+            <input class="form-control" type="text" th:field="*{salary}" id="sala">
+            <span class="text-danger" th:if="${#fields.hasErrors('salary')}" th:errors ="*{salary}"></span>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="room">Tên phòng:</label>
+            <select class="form-control" name="rooms.roomID" id="room">
+                <option value="">-- Select room --</option>
+                <option th:each="room : ${room}" th:value="${room.roomID}" th:text="${room.roomName}"></option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('rooms')}" th:errors ="*{rooms}"></span>
+        </div>
+        <input type="submit" value="Save">
+    </form>
+    <br>
+    <a th:href="@{/staff}">Back to List</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>

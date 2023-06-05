@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+      style="min-"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>My App</title>
+    <link th:fragment= "link-css"
+          rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link th:fragment= "link-css"
+          rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                Home
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class=" collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-O">
+                    <li class="nav-item"><a class="nav-link" href="/staff">List nhân viên</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/staff/add">Add nhân viên</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/room">List phòng ban</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/room/add">Add phòng ban</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div th:insert="~::${content}}">
+    <!-- NOI DUNG TRANG CON-->
+</div>
+<footer th:fragment="footer" id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50"
+        style="   position: fixed;
+                bottom: 0;
+                height: 50px;
+                width: 100%;
+                background-color: #f5f5f5;">
+
+    <div class="container text-center">
+    </div>
+
+
+</footer>
+<script th:src="@{/js/bootstrap.min.js}"><</script>
+</body>
+</html>

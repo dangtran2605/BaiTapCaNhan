@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách nhân viên</title>
+    <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1 nhân viên ></h1>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Tên nhân viên</th>
+            <th>Nơi sinh</th>
+            <th>Phái</th>
+            <th>Phòng ban</th>
+            <th>Lương</th>
+            <th>                       </th>
+        </tr>
+        <tr th:each="staff : ${staff}">
+            <td th:text="${staff.staffID}"></td>
+            <td th:text="${staff.staffName}"></td>
+            <td th:text="${staff.birthPlace}"></td>
+            <td >
+                <div th:switch="${staff.sex}">
+                    <img src="./image/man.png" style="width: 50px; height:50px" th:case="'Nam'"/>
+                    <img src="./image/female.png" style="width: 50px; height:50px"  th:case="'Nữ'"/>
+                </div>
+            </td>
+            <td th:text="${staff.rooms.roomName}"></td>
+            <td th:text="${staff.salary}"></td>
+            <td>
+                <a th:href="@{/staff/edit/{staffID}(staffID=${staff.staffID})}">Edit</a>
+                <form th:action="@{/staff/delete/{staffID}(staffID=${staff.staffID})}" method="post" onsubmit="return confirm">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>
